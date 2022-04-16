@@ -23,6 +23,10 @@ export class MyFormComponent implements OnInit {
     ];
   }
 
+  onSubmitForm(value: any):void{
+    console.log(value);
+  }
+
   ngOnInit(): void {
   }
 

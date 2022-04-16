@@ -1,1 +1,47 @@
-<p>my-form works!</p>
+<form
+  #formSend="ngForm"
+  (ngSubmit)="onSubmitForm(formSend.value)"
+  class="row g-3 align-items-center mb-3"
+>
+  <!-- Name Input Field-->
+  <div class="row g-3 align-items-center mb-2">
+    <label for="name" class="col-3">Nombre:</label>
+    <input [(ngModel)]="person.name" type="text" name="name" class="col-6" />
+  </div>
+
+  <!-- Surname Input Field-->
+  <div class="row g-3 align-items-center mb-2">
+    <label for="surname" class="col-3">Apellido:</label>
+    <input
+      [(ngModel)]="person.surname"
+      type="text"
+      name="surname"
+      class="col-6"
+    />
+  </div>
+
+  <!-- Country Select Field-->
+  <div class="row g-3 align-items-center mb-5">
+    <div class="col-3">
+      <label for="floatingSelect col-3">Pais:</label>
+    </div>
+    <div class="col-6">
+      <select
+        [(ngModel)]="person.idCountry"
+        name="idCountry"
+        class="form-select form-select-sm col-6 form-control"
+        aria-label=".form-select-sm example"
+        size="5"
+      >
+        <option *ngFor="let item of country" [value]="item.id">
+          {{ item.nombre }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Submit button-->
+  <div class="d-flex justify-content-end col-9">
+    <button type="submit" class="col-2">Send</button>
+  </div>
+</form>

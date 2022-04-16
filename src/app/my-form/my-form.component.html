@@ -3,6 +3,7 @@
   (ngSubmit)="onSubmitForm(formSend.value)"
   class="row g-3 align-items-center mb-3"
 >
+  <p>{{ formSend.value | json }}</p>
   <!-- Name Input Field-->
   <div class="row g-3 align-items-center mb-2">
     <label for="name" class="col-3">Nombre:</label>

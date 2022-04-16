@@ -1,29 +1,53 @@
 <form
   #formSend="ngForm"
-  (ngSubmit)="onSubmitForm(formSend.value)"
-  class="row g-3 align-items-center mb-3"
+  (ngSubmit)="onSubmitForm(formSend)"
+  class="row g-3 align-items-center mb-3 form-group"
 >
-  <p>{{ formSend.value | json }}</p>
-  <!-- Name Input Field-->
-  <div class="row g-3 align-items-center mb-2">
+  <p>Form valid: {{ formSend.valid | json }}</p>
+  <p>Form invalid: {{ formSend.invalid | json }}</p>
+  <p>
+    ¿Input name is valid? {{ formSend.form.controls["name"]?.value | json }}
+  </p>
+  <!-- Name Input Field -->
+  <div class="row g-3 align-items-center">
     <label for="name" class="col-3">Nombre:</label>
     <input
+      #nombre="ngModel"
       [(ngModel)]="person.name"
       type="text"
       name="name"
-      ngModelGroup="miNombre"
-      class="col-6"
+      class="col-6 form-control"
+      required
+      minlength="3"
     />
+
+    <div *ngIf="nombre.valid" class="alert alert-success">Input its valid.</div>
+    <div *ngIf="nombre.invalid" class="alert alert-danger">
+      Input its invalid.
+    </div>
+    <div *ngIf="nombre.dirty" class="alert alert-success">
+      Input its dirty (se ha ensuciado, es decir, introducido datos).
+    </div>
+    <div *ngIf="nombre.pristine" class="alert alert-danger">
+      Input its pristine (original no se ha escrito ningún dato).
+    </div>
+    <div *ngIf="nombre.touched" class="alert alert-success">
+      Input its touched (se ha tocado).
+    </div>
+    <div *ngIf="nombre.untouched" class="alert alert-danger">
+      Input its untouched (no se ha tocado).
+    </div>
   </div>
 
   <!-- Surname Input Field-->
-  <div class="row g-3 align-items-center mb-2">
+  <div class="row g-3 align-items-center mb-5">
     <label for="surname" class="col-3">Apellido:</label>
     <input
       [(ngModel)]="person.surname"
       type="text"
       name="surname"
       class="col-6"
+      required
     />
   </div>
 
@@ -36,9 +60,10 @@
       <select
         [(ngModel)]="person.idCountry"
         name="idCountry"
-        class="form-select form-select-sm col-6 form-control"
+        class="form-select form-select-sm col-6"
         aria-label=".form-select-sm example"
         size="5"
+        required
       >
         <option *ngFor="let item of country" [value]="item.id">
           {{ item.nombre }}

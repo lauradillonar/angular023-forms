@@ -1,3 +1,5 @@
+import { Country } from './../classes/country';
+import { Person } from './../classes/person';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyFormComponent implements OnInit {
 
-  constructor() { }
+  person: Person;
+  country: Country[];
+
+  constructor() { 
+    this.person = new Person();
+    this.country = [
+      {id: 1, nombre:'Spain'},
+      {id: 2, nombre:'France'},
+      {id: 3, nombre:'Italia'},
+      {id: 4, nombre:'Germany'},
+      {id: 5, nombre:'United Kindom'}
+    ];
+  }
 
   ngOnInit(): void {
   }

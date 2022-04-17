@@ -1,7 +1,7 @@
 <form
   #formSend="ngForm"
   (ngSubmit)="onSubmitForm(formSend)"
-  class="row g-3 align-items-center mb-3 form-group"
+  class="row g-3 align-items-center mb-3 form-group was-validated"
 >
   <!-- Name Input Field -->
   <div class="row g-3 align-items-center">
@@ -16,6 +16,12 @@
         required
         minlength="3"
         maxlength="10"
+        [ngClass]="
+          (nombre.invalid && nombre.touched && nombre.dirty) ||
+          (nombre.invalid && formSend.submitted)
+            ? 'is-invalid'
+            : 'is-valid'
+        "
       />
     </div>
     <!-- Validations Name Input Field-->
@@ -29,11 +35,9 @@
       Input its {{ formSend.form.controls["name"].status | json }} <br />
       {{ formSend.controls["name"]?.errors | json }}
     </div>
-    <!-- <div
-      *ngIf="nombre.valid && nombre.touched && nombre.dirty"
-      class="alert alert-success"
-    >
-      Input its {{ formSend.form.controls["name"].status | json }}.
+
+    <!-- <div *ngIf="nombre.valid && nombre.touched && nombre.dirty" class="alert alert-success">
+      Input its {{formSend.form.controls.name.status | json}}.
     </div> -->
 
     <!-- Surname Input Field-->
@@ -48,6 +52,12 @@
           class="form-control"
           required
           minlength="5"
+          [ngClass]="
+            (nombre.invalid && nombre.touched && nombre.dirty) ||
+            (nombre.invalid && formSend.submitted)
+              ? 'is-invalid'
+              : 'is-valid'
+          "
         />
       </div>
     </div>
@@ -75,6 +85,12 @@
           class="form-control"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           required
+          [ngClass]="
+            (nombre.invalid && nombre.touched && nombre.dirty) ||
+            (nombre.invalid && formSend.submitted)
+              ? 'is-invalid'
+              : 'is-valid'
+          "
         />
       </div>
     </div>
@@ -99,6 +115,12 @@
           #idCountry="ngModel"
           name="idCountry"
           class="form-select form-select-sm"
+          [ngClass]="
+            (nombre.invalid && nombre.touched && nombre.dirty) ||
+            (nombre.invalid && formSend.submitted)
+              ? 'is-invalid'
+              : 'is-valid'
+          "
           aria-label=".form-select-sm example"
           size="5"
           required
